@@ -20,15 +20,15 @@ CREATE TABLE salary_history (
 
 --FUNCTION
 CREATE OR REPLACE FUNCTION log_salary_change()
+CREATE OR REPLACE FUNCTION log_salary_change()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.salary IS DISTINCT FROM OLD.salary THEN
-        INSERT INTO salary_history (employee_id, old_salary, new_salary)
-        VALUES (OLD.employee_id, OLD.salary, NEW.salary);
-    END IF;
+    INSERT INTO salary_history (employee_id, old_salary, new_salary)
+    VALUES (OLD.employee_id, OLD.salary, NEW.salary);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 
 
 
