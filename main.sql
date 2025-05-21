@@ -19,7 +19,7 @@ CREATE TABLE salary_history (
 
 
 --FUNCTION
-CREATE OR REPLACE FUNCTION log_salary_change()
+CREATE FUNCTION log_salary_change()
 RETURNS TRIGGER AS $$
 BEGIN
     INSERT INTO salary_history (employee_id, old_salary, new_salary)
