@@ -14,10 +14,6 @@ CREATE TABLE salary_history (
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
 );
 
-
-
-
-
 --FUNCTION
 CREATE FUNCTION log_salary_change()
 RETURNS TRIGGER AS $$
@@ -28,25 +24,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
-
-
 --TRIGGER
 CREATE TRIGGER trigger_salary_change
 AFTER UPDATE ON employees
 FOR EACH ROW
 WHEN (OLD.salary IS DISTINCT FROM NEW.salary)
 EXECUTE FUNCTION log_salary_change();
-
-
-
-
-
-
-
 
 --EXAMPLE
 -- Insert sample employee
